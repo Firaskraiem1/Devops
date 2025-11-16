@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    stages {
+        
+        stage('Checkout Code') {
+            steps {
+                echo "⚙️ Clonage du repository..."
+                git branch: 'main',
+                    url: 'https://github.com/Firaskraiem1/Devops',
+                  
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo "🔨 Construction du livrable..."
+                sh "mvn clean package -DskipTests"
+            }
+        }
+
+    }
+}
