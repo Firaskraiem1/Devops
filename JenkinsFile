@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+        triggers {
+        githubPush()   // Déclenche le pipeline à chaque push
+    }
     stages {
         
         stage('Checkout Code') {
