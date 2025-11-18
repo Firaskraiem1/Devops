@@ -1,7 +1,4 @@
 pipeline {
-    agent {
-        label 'slave_build'
-    }
     triggers {
         pollSCM('H/5 * * * *')
     }
