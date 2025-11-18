@@ -11,7 +11,7 @@ pipeline {
             steps {
                 echo "⚙️ Clonage du repository..."
                 git branch: 'main',
-                    url: 'https://github.com/Firaskraiem1/Devops',
+                    url: 'https://github.com/Firaskraiem1/DevOps-Jenkins.git',
                   
             }
         }
