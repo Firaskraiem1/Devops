@@ -17,13 +17,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo "🔨 Construction du livrable...."
-                script {
-                    if (isUnix()) {
-                        sh "mvn clean package -DskipTests"
-                    } else {
-                        bat "mvn clean package -DskipTests"
-                    }
-                }
+                bat "mvn clean package -DskipTests"
             }
         }
     }
