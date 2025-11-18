@@ -17,7 +17,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo "🔨 Construction du livrable...."
-                bat "mvn clean package -DskipTests"
+                powershell "mvn clean package -DskipTests"
             }
         }
     }
