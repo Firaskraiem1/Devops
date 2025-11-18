@@ -2,22 +2,41 @@ pipeline {
     agent {
         label 'slave_build'
     }
-    triggers {
-        pollSCM('H/5 * * * *')
-    }
     stages {
+        stage('Diagnostic') {
+            steps {
+                echo "=== Diagnostic complet ==="
+                script {
+                    echo "Nœud: ${env.NODE_NAME}"
+                    echo "Workspace: ${env.WORKSPACE}"
+                    echo "isUnix(): ${isUnix()}"
+                    
+                    // Test commandes Linux
+                    sh '''
+                        echo "=== Environnement Linux ==="
+                        uname -a
+                        pwd
+                        ls -la
+                        which java
+                        which mvn
+                        java -version
+                        mvn --version || echo "Maven non installé"
+                    '''
+                }
+            }
+        }
+
         stage('Checkout Code') {
             steps {
                 echo "⚙️ Clonage du repository..."
-                git branch: 'main',
-                    url: 'https://github.com/Firaskraiem1/DevOps-Jenkins'
+                git branch: 'main', url: 'https://github.com/Firaskraiem1/DevOps-Jenkins'
             }
         }
 
         stage('Build') {
             steps {
                 echo "🔨 Construction du livrable...."
-                powershell "mvn clean package -DskipTests"
+                sh "mvn clean package -DskipTests"
             }
         }
     }
