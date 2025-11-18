@@ -1,18 +1,16 @@
 pipeline {
     agent {
-        label "slave_build"
+        label 'slave_build'
     }
     triggers {
         pollSCM('H/5 * * * *')
     }
     stages {
-        
         stage('Checkout Code') {
             steps {
                 echo "⚙️ Clonage du repository..."
                 git branch: 'main',
-                    url: 'https://github.com/Firaskraiem1/DevOps-Jenkins.git',
-                  
+                    url: 'https://github.com/Firaskraiem1/DevOps-Jenkins'
             }
         }
 
@@ -22,6 +20,5 @@ pipeline {
                 sh "mvn clean package -DskipTests"
             }
         }
-
     }
 }
