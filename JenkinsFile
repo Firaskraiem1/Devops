@@ -1,7 +1,9 @@
 pipeline {
-    agent any
-        triggers {
-        pollSCM('H/5 * * * *') // every 5 minutes
+    agent {
+        label 'slave_build'
+    }
+    triggers {
+        pollSCM('H/5 * * * *')
     }
     stages {
         
